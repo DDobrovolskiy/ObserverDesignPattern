@@ -19,9 +19,18 @@ namespace ObserverDesignPattern
 
             string directory = @"C:\Users\Dmitry\Desktop\CSharp Project\ObserverDesignPattern\ObserverDesignPattern\ObserverDesignPattern\Directory";
 
-            FileStatusDelegate fileStatusDelegate = new FileStatusDelegate(directory, new Subscriber("Delegate").ItIsSubscribe);
+            //delegate
 
+            //FileStatusDelegate fileStatusDelegate = new FileStatusDelegate(directory, new Subscriber("Delegate").ItIsSubscribe);
 
+            //event
+
+            var eObserver = new FileStatusEvent(directory);
+            var subscriber1 = new Subscriber("event 1");
+            var subscriber2 = new Subscriber("event 2");
+
+            eObserver.removeFile += subscriber1.ItIsSubscribe;
+            eObserver.removeFile += subscriber2.ItIsSubscribeTwo;
 
             Console.ReadKey();
         }

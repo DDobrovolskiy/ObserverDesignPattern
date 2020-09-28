@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
 namespace ObserverDesignPattern.Observer
 {
-    public class FileStatusDelegate
+    public class FileStatusEvent
     {
-        private readonly Action<string> _subscriber;
+        public EventHandler<string> removeFile;
         private readonly Timer _timer;
         private readonly MonitorDirectory _monitorDirectory;
 
-        public FileStatusDelegate(string directory, Action<string> subscriber)
+        public FileStatusEvent(string directory)
         {
-            _subscriber = subscriber;
             _monitorDirectory = new MonitorDirectory(directory);
 
-            if(_monitorDirectory.StartMonitor())
+            if (_monitorDirectory.StartMonitor())
             {
                 _timer = new Timer(1000);
                 _timer.Elapsed += TimerElapsed;
@@ -33,9 +31,10 @@ namespace ObserverDesignPattern.Observer
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            foreach(var filename in _monitorDirectory.GetListDeleteFile())
+            foreach (var filename in _monitorDirectory.GetListDeleteFile())
             {
-                _subscriber(filename);
+                var eHandler = removeFile;
+                eHandler?.Invoke(this, filename);
             }
         }
     }

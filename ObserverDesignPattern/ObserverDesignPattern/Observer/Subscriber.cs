@@ -19,5 +19,16 @@ namespace ObserverDesignPattern.Observer
         {
             Console.WriteLine($"{_name} {fileDeleteName} was deleted!");
         }
+
+        public void ItIsSubscribe(object sendler, string fileDeleteName)
+        {
+            Console.WriteLine($"{_name} {fileDeleteName} was deleted!");
+        }
+
+        public void ItIsSubscribeTwo(object sendler, string fileDeleteName)
+        {
+            Console.WriteLine("---");
+            Console.WriteLine($"{_name} {fileDeleteName} was deleted!");
+        }
     }
 }

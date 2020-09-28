@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="MonitorDirectory.cs" />
     <Compile Include="Observer\FileStatusDelegate.cs" />
+    <Compile Include="Observer\FileStatusEvent.cs" />
     <Compile Include="Observer\Subscriber.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
